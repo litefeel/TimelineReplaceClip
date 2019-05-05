@@ -22,5 +22,9 @@ public class ReplaceTest : MonoBehaviour
         ReplaceUtil.ReplaceAll(director, clip, map);
         director.Play();
         ReplaceUtil.RestoreAsset(map);
+        director.stopped += (obj) =>
+        {
+            GameObject.Destroy(obj.gameObject);
+        };
     }
 }
