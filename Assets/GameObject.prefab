@@ -411,6 +411,7 @@ PlayableDirector:
   m_ExposedReferences:
     m_References:
     - ec4db024a5768294687da8b183b6403d: {fileID: 2663661691722904100}
+    - 1b5de2777ab2d1a4e8907e38e4eb6f66: {fileID: 6339590985355858824}
     - 5958865114963c54ca8d2a1b983c8e86: {fileID: 2663661692438798930}
 --- !u!95 &2663661691789399237
 Animator:
