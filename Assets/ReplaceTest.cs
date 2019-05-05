@@ -18,7 +18,7 @@ public class ReplaceTest : MonoBehaviour
     private void DoPlay()
     {
         var director = GameObject.Instantiate(prefab);
-        Dictionary<AnimationPlayableAsset, AnimationClip> map = new Dictionary<AnimationPlayableAsset, AnimationClip>();
+        var map = new Dictionary<AnimationPlayableAsset, AnimationClip>();
         ReplaceUtil.ReplaceAll(director, clip, map);
         director.Play();
         ReplaceUtil.RestoreAsset(map);

@@ -5,8 +5,6 @@ namespace UnityEngine.Timeline
 {
     public static class ReplaceUtil
     {
-        private static Dictionary<string, AnimationClip> s_AnimationClipMap = new Dictionary<string, AnimationClip>();
-
 
         public static void ReplaceAll(PlayableDirector timeline, AnimationClip clip, Dictionary<AnimationPlayableAsset, AnimationClip> map)
         {
@@ -15,17 +13,12 @@ namespace UnityEngine.Timeline
             {
                 if (!(track.sourceObject is AnimationTrack))
                     continue;
-               
+
+
+                var animationTrack = track.sourceObject as AnimationTrack;
+                if (animationTrack != null)
                 {
-                    var animationTrack = track.sourceObject as AnimationTrack;
-                    if (animationTrack != null)
-                    {
-                        ReplaceAnimationTrackClips(animationTrack, clip, map);
-                    }
-                    else
-                    {
-                        Debug.LogError($"未实现的轨道替换 {track.sourceObject}");
-                    }
+                    ReplaceAnimationTrackClips(animationTrack, clip, map);
                 }
             }
         }
@@ -43,18 +36,14 @@ namespace UnityEngine.Timeline
 
         private static void ReplaceAnimationTrackClips(AnimationTrack track, AnimationClip newClip, Dictionary<AnimationPlayableAsset, AnimationClip> map)
         {
-
-            s_AnimationClipMap.Clear();
-
             foreach (var clip in track.GetClips())
             {
                 var animationPlayableAsset = (AnimationPlayableAsset)clip.asset;
-                
-                    map[animationPlayableAsset] = animationPlayableAsset.clip;
-                    animationPlayableAsset.clip = newClip;
-                
+
+                map[animationPlayableAsset] = animationPlayableAsset.clip;
+                animationPlayableAsset.clip = newClip;
+
             }
-            s_AnimationClipMap.Clear();
         }
         public static GameObject GetGo(Object obj)
         {
